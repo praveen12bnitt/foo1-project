@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+version = '0.0.1'
+group   = 'org.github.prajan'
+
+version = version + '-SNAPSHOT'
+String repo = version.endsWith('-SNAPSHOT') ? 'libs-snapshot-local' : 'libs-release-local'
+
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main.java.srcDirs += 'gensrc/main/java'
+}
+
+dependencies {
+    compile("commons-collections:commons-collections:3.2.1")
+    testCompile("org.springframework.boot:spring-boot-starter-web")
+}
+
+
+
+task wrapper(type: Wrapper) { gradleVersion = '2.9' }
